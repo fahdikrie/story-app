@@ -6,7 +6,9 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2599655356539776" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12259371833839919" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.11562782294489611" />
-        <entry key="app/src/main/res/layout/item_story_card.xml" value="0.11562782294489611" />
+        <entry key="app/src/main/res/layout/activity_story_detail.xml" value="0.11562782294489611" />
+        <entry key="app/src/main/res/layout/activity_story_list.xml" value="0.14053945528676012" />
+        <entry key="app/src/main/res/layout/item_story_card.xml" value="0.2584865039288587" />
       </map>
     </option>
   </component>
