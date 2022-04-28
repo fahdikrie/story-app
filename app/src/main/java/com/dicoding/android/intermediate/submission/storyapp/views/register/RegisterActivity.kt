@@ -2,10 +2,12 @@ package com.dicoding.android.intermediate.submission.storyapp.views.register
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityRegisterBinding
+import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -18,6 +20,8 @@ class RegisterActivity : AppCompatActivity() {
 
         setHeader()
         playAnimation()
+        bindRegisterButton()
+        bindBackToLoginButton()
     }
 
     private fun setHeader() {
@@ -26,20 +30,21 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.registerAsset, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 6000
+            duration = 3000
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-        val title = ObjectAnimator.ofFloat(binding.titleRegisterPageTv, View.ALPHA, 1f).setDuration(500)
-        val desc = ObjectAnimator.ofFloat(binding.descRegisterPageTv, View.ALPHA, 1f).setDuration(500)
-        val nameTextView = ObjectAnimator.ofFloat(binding.nameInputLabelTv, View.ALPHA, 1f).setDuration(500)
-        val nameEditTextLayout = ObjectAnimator.ofFloat(binding.nameInputLayout, View.ALPHA, 1f).setDuration(500)
-        val emailTextView = ObjectAnimator.ofFloat(binding.emailInputLabelTv, View.ALPHA, 1f).setDuration(500)
-        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.emailInputLayout, View.ALPHA, 1f).setDuration(500)
-        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordInputLabel, View.ALPHA, 1f).setDuration(500)
-        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.passwordInputLayout, View.ALPHA, 1f).setDuration(500)
-        val register = ObjectAnimator.ofFloat(binding.registerBtn, View.ALPHA, 1f).setDuration(500)
+        val title = ObjectAnimator.ofFloat(binding.titleRegisterPageTv, View.ALPHA, 1f).setDuration(100)
+        val desc = ObjectAnimator.ofFloat(binding.descRegisterPageTv, View.ALPHA, 1f).setDuration(100)
+        val nameTextView = ObjectAnimator.ofFloat(binding.nameInputLabelTv, View.ALPHA, 1f).setDuration(100)
+        val nameEditTextLayout = ObjectAnimator.ofFloat(binding.nameInputLayout, View.ALPHA, 1f).setDuration(100)
+        val emailTextView = ObjectAnimator.ofFloat(binding.emailInputLabelTv, View.ALPHA, 1f).setDuration(100)
+        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.emailInputLayout, View.ALPHA, 1f).setDuration(100)
+        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordInputLabel, View.ALPHA, 1f).setDuration(100)
+        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.passwordInputLayout, View.ALPHA, 1f).setDuration(100)
+        val registerBtn = ObjectAnimator.ofFloat(binding.registerBtn, View.ALPHA, 1f).setDuration(100)
+        val backToLoginBtn = ObjectAnimator.ofFloat(binding.backToLoginBtn, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
             playSequentially(
@@ -51,9 +56,23 @@ class RegisterActivity : AppCompatActivity() {
                 emailEditTextLayout,
                 passwordTextView,
                 passwordEditTextLayout,
-                register,
+                registerBtn,
+                backToLoginBtn,
             )
             startDelay = 500
         }.start()
     }
+
+    private fun bindRegisterButton() {
+        binding.registerBtn.setOnClickListener {
+            // Do Nothing.
+        }
+    }
+
+    private fun bindBackToLoginButton() {
+        binding.backToLoginBtn.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+    }
+
 }
