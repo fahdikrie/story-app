@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple_100"
-    tools:context=".views.login.LoginActivity">
+    tools:context=".views.register.RegisterActivity">
 
     <ImageView
-        android:id="@+id/login_asset"
+        android:id="@+id/register_asset"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
@@ -17,18 +17,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal2"
-        app:srcCompat="@drawable/login"
-        android:contentDescription="@string/login_asset_alt" />
+        app:srcCompat="@drawable/register"
+        android:contentDescription="@string/register_asset_alt" />
 
     <TextView
-        android:id="@+id/title_login_page_tv"
+        android:id="@+id/title_register_page_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:alpha="0"
-        android:text="@string/title_login_page"
+        android:text="@string/title_register_page"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -38,31 +38,66 @@
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
 
     <TextView
-        android:id="@+id/desc_login_page_tv"
+        android:id="@+id/desc_register_page_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:alpha="0"
-        android:text="@string/desc_login_page"
+        android:text="@string/desc_register_page"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_login_page_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/title_register_page_tv" />
+
+    <TextView
+        android:id="@+id/name_input_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0"
+        android:text="@string/name_input_label_text"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc_register_page_tv" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:alpha="0"
+        android:hint="@string/name_input_label_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_input_label_tv"
+        app:startIconDrawable="@drawable/ic_baseline_account_circle_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/email_input_label_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:alpha="0"
         android:text="@string/email_input_label_text"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_login_page_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/name_input_layout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_input_layout"
@@ -123,7 +158,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/login_btn"
+        android:id="@+id/register_btn"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
@@ -131,26 +166,10 @@
         android:layout_marginEnd="32dp"
         android:alpha="0"
         android:backgroundTint="@color/purple_700"
-        android:text="@string/login_button_text"
+        android:text="@string/register_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_input_layout" />
-
-    <Button
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-        android:id="@+id/register_first_btn"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:alpha="0"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@color/purple_700"
-        android:text="@string/register_first_button_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"

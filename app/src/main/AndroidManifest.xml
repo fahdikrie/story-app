@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp">
         <activity
+            android:name=".views.register.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.login.LoginActivity"
             android:exported="false" />
         <activity

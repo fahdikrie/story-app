@@ -2,13 +2,19 @@
     <string name="app_name">Story App</string>
     <string name="app_logo_alt">app_logo</string>
 
-    <string name="title_login_page">Login</string>
+    <string name="title_login_page">Masuk</string>
     <string name="desc_login_page">Masuk terlebih dahulu sebelum menggunakan Story App™</string>
     <string name="login_asset_alt">Login Image</string>
-    <string name="password_input_label_text">Password</string>
+    <string name="password_input_label_text">Kata Sandi</string>
     <string name="email_input_label_text">Email</string>
     <string name="login_button_text">Login</string>
-    <string name="edit_text_password_error_msg">Password tidak boleh kurang dari 6 karakter</string>
+    <string name="edit_text_password_error_msg">Kata Sandi tidak boleh kurang dari 6 karakter</string>
     <string name="edit_text_email_error_msg">Email tidak valid</string>
-    <string name="register_button_text">Daftar Terlebih Dahulu</string>
+    <string name="register_first_button_text">Daftar Terlebih Dahulu</string>
+
+    <string name="title_register_page">Buat Akun</string>
+    <string name="desc_register_page">Mendaftar terlebih dahulu sebelum menggunakan Story App™</string>
+    <string name="register_asset_alt">Register Image</string>
+    <string name="name_input_label_text">Nama Lengkap</string>
+    <string name="register_button_text">Daftar</string>
 </resources>
