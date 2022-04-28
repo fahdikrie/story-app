@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Story App</string>
+    <string name="app_logo_alt">app_logo</string>
+    <string name="login_asset_alt">login_asset</string>
 </resources>
