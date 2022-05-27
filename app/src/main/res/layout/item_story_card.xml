@@ -9,7 +9,7 @@
     android:layout_marginTop="4dp"
     android:layout_marginRight="8dp"
     android:layout_marginBottom="4dp"
-    card_view:cardBackgroundColor="@color/purple_500"
+    card_view:cardBackgroundColor="@color/purple_200"
     card_view:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -22,4 +22,6 @@
     <string name="register_button_text">Daftar</string>
     <string name="back_to_login_btn_text">Sudah punya akun?</string>
     <string name="story_image_alt">Story Image</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_settings">Settings</string>
 </resources>

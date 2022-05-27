@@ -1,24 +1,25 @@
 package com.dicoding.android.intermediate.submission.storyapp.views.storylist
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryListBinding
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
-import com.dicoding.android.intermediate.submission.storyapp.views.factories.UserViewModelFactory
-import com.dicoding.android.intermediate.submission.storyapp.views.register.RegisterViewModel
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -30,7 +31,7 @@ class StoryListActivity : AppCompatActivity() {
     private val storyListViewModel: StoryListViewModel by viewModels {
         storyViewModelFactory
     }
-    private var token: String = ""
+    private lateinit var token: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +48,7 @@ class StoryListActivity : AppCompatActivity() {
 
     private fun setHeader() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#FF3700B3")))
     }
 
     private fun bindViewModelToRV() {
@@ -54,18 +56,13 @@ class StoryListActivity : AppCompatActivity() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 storyListViewModel.getStoryList(token).collect {
                     it.onSuccess { response ->
-                        Toast.makeText(
-                            this@StoryListActivity,
-                            "Success!!!!",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         response.listStory?.let { storyList -> showRecyclerList(storyList) }
                     }
 
                     it.onFailure {
                         Toast.makeText(
                             this@StoryListActivity,
-                            "Error on wkwk",
+                            "Oops! error on loading stories",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -73,6 +70,24 @@ class StoryListActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings -> {
+                return true
+            }
+            R.id.logout -> {
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
     private fun showRecyclerList(storyList: List<StoryItem?>) {
         val linearLayoutManager = LinearLayoutManager(this)
