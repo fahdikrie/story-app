@@ -9,7 +9,8 @@
     android:layout_marginTop="4dp"
     android:layout_marginRight="8dp"
     android:layout_marginBottom="4dp"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardBackgroundColor="@color/purple_500"
+    card_view:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,6 +37,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             card_view:layout_constraintEnd_toEndOf="@id/story_image_iv"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -54,6 +56,7 @@
             android:scrollHorizontally="false"
             android:ellipsize="end"
             android:maxLines="2"
+            android:textColor="@color/white"
             card_view:layout_constraintEnd_toEndOf="@id/story_title_tv"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="@id/story_title_tv"
