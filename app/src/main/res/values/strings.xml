@@ -30,4 +30,5 @@
     <!--Story Detail Page-->
     <string name="story_detail_image_alt">Story Image</string>
     <string name="created_at_text">Created at %s</string>
+    <string name="add_story_fab_alt">Add Story Floating Button</string>
 </resources>

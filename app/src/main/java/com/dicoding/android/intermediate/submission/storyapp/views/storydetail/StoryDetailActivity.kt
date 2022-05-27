@@ -29,8 +29,14 @@ class StoryDetailActivity : AppCompatActivity() {
     }
 
     private fun setHeader() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#FF3700B3")))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -18,8 +18,10 @@ import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryListBinding
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
+import com.dicoding.android.intermediate.submission.storyapp.views.register.RegisterActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
+import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -43,6 +45,7 @@ class StoryListActivity : AppCompatActivity() {
         token = intent.getStringExtra(EXTRA_TOKEN)!!
 
         setHeader()
+        bindFloatingActionBtn()
         bindViewModelToRV()
     }
 
@@ -65,6 +68,12 @@ class StoryListActivity : AppCompatActivity() {
                 return true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun bindFloatingActionBtn() {
+        binding.storyAddFab.setOnClickListener {
+            startActivity(Intent(this, StoryUploadActivity::class.java))
         }
     }
 
