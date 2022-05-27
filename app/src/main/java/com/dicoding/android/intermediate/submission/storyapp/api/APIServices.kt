@@ -12,25 +12,25 @@ import retrofit2.http.*
 interface APIServices {
     @FormUrlEncoded
     @POST("register")
-    fun postRegister(
+    suspend fun postRegister(
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<RegisterResponse>
+    ): RegisterResponse
 
     @FormUrlEncoded
     @POST("login")
-    fun postLogin(
+    suspend fun postLogin(
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @GET("stories")
-    fun getStoryList(
+    suspend fun getStoryList(
         @Header("Authorization") token: String,
         @Query("page") page: Int?,
         @Query("size") size: Int?
-    ):Call<StoryListResponse>
+    ): StoryListResponse
 
     @Multipart
     @POST("stories")

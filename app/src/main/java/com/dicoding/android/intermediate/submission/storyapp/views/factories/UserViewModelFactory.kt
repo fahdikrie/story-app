@@ -3,6 +3,7 @@ package com.dicoding.android.intermediate.submission.storyapp.views.factories
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.dicoding.android.intermediate.submission.storyapp.models.injections.UserInjection
 import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginViewModel
 import com.dicoding.android.intermediate.submission.storyapp.views.register.RegisterViewModel
@@ -26,7 +27,7 @@ class UserViewModelFactory(private val repo: UserRepository) : ViewModelProvider
         private var instance: UserViewModelFactory? = null
         fun getInstance(context: Context): UserViewModelFactory {
             return instance ?: synchronized(this) {
-                instance ?: UserViewModelFactory(Injection.provideRepository(context))
+                instance ?: UserViewModelFactory(UserInjection.provideRepository(context))
             }.also { instance = it }
         }
     }

@@ -37,7 +37,7 @@ class EditTextPassword : TextInputEditText {
 
             override fun onTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 if (s.toString().length < 6)
-                    setError(context.getString(R.string.edit_text_email_error_msg), null)
+                    setError(context.getString(R.string.edit_text_password_error_msg), null)
             }
 
             override fun afterTextChanged(p0: Editable?) {

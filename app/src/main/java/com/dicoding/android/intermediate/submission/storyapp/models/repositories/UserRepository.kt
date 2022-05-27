@@ -1,5 +1,6 @@
 package com.dicoding.android.intermediate.submission.storyapp.models.repositories
 
+import android.util.Log
 import com.dicoding.android.intermediate.submission.storyapp.api.APIServices
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.LoginResponse
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.RegisterResponse
@@ -33,9 +34,11 @@ class UserRepository @Inject constructor(
     ): Flow<Result<Any>> = flow {
         try {
             val response = services.postRegister(name, email, password)
+            Log.d(Log.INFO.toString(), response.message)
             emit(Result.success(response))
         } catch (e: Exception) {
             e.printStackTrace()
+            Log.d(Log.ERROR.toString(), "error")
             val failure = Result.failure<RegisterResponse>(e)
             emit(failure)
         }
@@ -45,13 +48,21 @@ class UserRepository @Inject constructor(
         preferences.saveUser(user)
     }
 
-    fun getUser() = preferences.getUser()
-
-    suspend fun login() {
-        preferences.login()
-    }
-
     suspend fun logout() {
         preferences.logout()
+    }
+
+    fun getUser() = preferences.getUser()
+
+    companion object {
+        @Volatile
+        private var instance: UserRepository? = null
+        fun getInstance(
+            preferences: UserPreferences,
+            services: APIServices
+        ): UserRepository =
+            instance ?: synchronized(this) {
+                instance ?: UserRepository(preferences, services)
+            }.also { instance = it }
     }
 }

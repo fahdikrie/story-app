@@ -15,9 +15,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
             UserModel(
                 preferences[NAME_KEY] ?: "",
                 preferences[EMAIL_KEY] ?: "",
-                preferences[PASSWORD_KEY] ?: "",
                 preferences[TOKEN_KEY] ?: "",
-                preferences[IS_LOGIN_STATE] ?: false,
             )
         }
     }
@@ -26,15 +24,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         dataStore.edit { preferences ->
             preferences[NAME_KEY] = user.name
             preferences[EMAIL_KEY] = user.email
-            preferences[PASSWORD_KEY] = user.password
             preferences[TOKEN_KEY] = user.token
-            preferences[IS_LOGIN_STATE] = user.isLogin
-        }
-    }
-
-    suspend fun login() {
-        dataStore.edit { preferences ->
-            preferences[IS_LOGIN_STATE] = true
         }
     }
 
@@ -49,10 +39,8 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private var INSTANCE: UserPreferences? = null
 
         private val NAME_KEY = stringPreferencesKey("name")
-        private val PASSWORD_KEY = stringPreferencesKey("password")
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val TOKEN_KEY = stringPreferencesKey("token")
-        private val IS_LOGIN_STATE = booleanPreferencesKey("isLogin")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreferences {
             return INSTANCE ?: synchronized(this) {

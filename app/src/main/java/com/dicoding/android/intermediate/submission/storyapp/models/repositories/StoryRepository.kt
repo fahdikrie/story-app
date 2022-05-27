@@ -3,6 +3,7 @@ package com.dicoding.android.intermediate.submission.storyapp.models.repositorie
 import com.dicoding.android.intermediate.submission.storyapp.api.APIServices
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryAddResponse
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryListResponse
+import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserPreferences
 import com.dicoding.android.intermediate.submission.storyapp.utils.addBearerPrefix
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -46,5 +47,16 @@ class StoryRepository @Inject constructor(
             val failure = Result.failure<StoryAddResponse>(e)
             emit(failure)
         }
+    }
+
+    companion object {
+        @Volatile
+        private var instance: StoryRepository? = null
+        fun getInstance(
+            services: APIServices
+        ): StoryRepository =
+            instance ?: synchronized(this) {
+                instance ?: StoryRepository(services)
+            }.also { instance = it }
     }
 }
