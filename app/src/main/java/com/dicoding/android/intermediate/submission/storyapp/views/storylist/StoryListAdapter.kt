@@ -32,10 +32,6 @@ class StoryListAdapter(
                 Glide.with(itemView.context)
                     .load(story.photoUrl)
                     .fitCenter()
-//                    .apply(
-//                        RequestOptions
-//                            .placeholderOf(R.drawable.ic_loading)
-//                            .error(R.drawable.ic_error))
                     .into(storyImageIv)
                 
                 root.setOnClickListener {
