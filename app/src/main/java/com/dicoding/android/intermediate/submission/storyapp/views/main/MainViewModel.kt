@@ -4,9 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
 import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserModel
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class MainViewModel (
     private val repository: UserRepository
 ) : ViewModel() {
 

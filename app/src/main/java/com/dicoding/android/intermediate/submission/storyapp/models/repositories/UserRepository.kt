@@ -10,9 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import javax.inject.Inject
 
-class UserRepository @Inject constructor(
+class UserRepository constructor(
     private val preferences: UserPreferences,
     private val services: APIServices
 ) {

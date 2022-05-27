@@ -14,7 +14,7 @@ class UserViewModelFactory(private val repo: UserRepository) : ViewModelProvider
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
-                RegisterViewModel(repo) as T
+                MainViewModel(repo) as T
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repo) as T

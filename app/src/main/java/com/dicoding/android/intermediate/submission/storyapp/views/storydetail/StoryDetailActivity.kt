@@ -13,4 +13,8 @@ class StoryDetailActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
+
+    companion object {
+        const val EXTRA_STORY_DETAIL = "extra_story_detail"
+    }
 }

@@ -4,12 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
 import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class LoginViewModel @Inject constructor(
+class LoginViewModel (
     private val repository: UserRepository
 ) : ViewModel() {
 

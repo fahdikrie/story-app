@@ -1,5 +1,6 @@
 package com.dicoding.android.intermediate.submission.storyapp.models.repositories
 
+import android.util.Log
 import com.dicoding.android.intermediate.submission.storyapp.api.APIServices
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryAddResponse
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryListResponse
@@ -11,23 +12,24 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import javax.inject.Inject
 
-class StoryRepository @Inject constructor(
+class StoryRepository constructor(
     private val services: APIServices
-    ) {
+) {
 
     suspend fun getStoryList(
         token: String,
         page: Int? = null,
         size: Int? = null
-    ): Flow<Result<Any>> = flow {
+    ): Flow<Result<StoryListResponse>> = flow {
         try {
             val bearer = addBearerPrefix(token)
             val response = services.getStoryList(bearer, page, size)
+            Log.d(Log.WARN.toString(), "TESSSS")
             emit(Result.success(response))
         } catch (e: Exception) {
             e.printStackTrace()
+            Log.d(Log.WARN.toString(), "TESSSS")
             val failure = Result.failure<StoryListResponse>(e)
             emit(failure)
         }

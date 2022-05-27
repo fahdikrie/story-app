@@ -2,11 +2,8 @@ package com.dicoding.android.intermediate.submission.storyapp.views.register
 
 import androidx.lifecycle.ViewModel
 import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class RegisterViewModel @Inject constructor(
+class RegisterViewModel constructor(
     private val repository: UserRepository
 ) : ViewModel() {
 

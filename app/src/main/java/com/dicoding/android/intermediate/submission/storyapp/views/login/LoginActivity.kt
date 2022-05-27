@@ -105,8 +105,11 @@ class LoginActivity : AppCompatActivity() {
                                 startActivity(
                                     Intent(
                                         this@LoginActivity,
-                                        StoryListActivity::class.java
-                                    )
+                                        StoryListActivity::class.java).also { intent ->
+                                        intent.putExtra(StoryListActivity.EXTRA_TOKEN, token)
+                                        startActivity(intent)
+                                        finish()
+                                    }
                                 )
                             }, 1000)
                         }
