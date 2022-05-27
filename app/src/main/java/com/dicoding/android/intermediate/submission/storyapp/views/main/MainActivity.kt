@@ -6,22 +6,35 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.animation.AnimationUtils
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityMainBinding
+import com.dicoding.android.intermediate.submission.storyapp.views.factories.UserViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
+import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListActivity
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var userViewModelFactory: UserViewModelFactory
+    private val mainViewModel: MainViewModel by viewModels {
+        userViewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        userViewModelFactory = UserViewModelFactory.getInstance(this)
         val view = binding.root
         setContentView(view)
 
         setHeader()
         animateLogo()
-        goToNextPage()
+        Handler(Looper.getMainLooper()).postDelayed({
+            goToNextPage()
+        }, 3000)
     }
 
     private fun setHeader() {
@@ -36,10 +49,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToNextPage() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)
+        lifecycleScope.launchWhenCreated {
+            launch {
+                mainViewModel.getUser().collect {
+                    if (it.token.isEmpty()) {
+                        Intent(this@MainActivity, LoginActivity::class.java).also { intent ->
+                            startActivity(intent)
+                            finish()
+                        }
+                    } else {
+                        Intent(this@MainActivity, StoryListActivity::class.java).also { intent ->
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                }
+            }
+        }
     }
 }

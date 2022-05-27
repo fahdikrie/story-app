@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -17,8 +16,6 @@ import com.dicoding.android.intermediate.submission.storyapp.models.responses.Lo
 import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserModel
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.UserViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.register.RegisterActivity
-import com.dicoding.android.intermediate.submission.storyapp.views.register.RegisterViewModel
-import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect

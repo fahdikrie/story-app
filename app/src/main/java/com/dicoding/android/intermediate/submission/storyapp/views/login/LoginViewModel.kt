@@ -16,7 +16,7 @@ class LoginViewModel @Inject constructor(
     suspend fun postLogin(email: String, password: String) =
         repository.postLogin(email, password)
 
-    fun saveUser(user: UserModel) {
+    suspend fun saveUser(user: UserModel) {
         viewModelScope.launch {
             repository.saveUser(user)
         }
