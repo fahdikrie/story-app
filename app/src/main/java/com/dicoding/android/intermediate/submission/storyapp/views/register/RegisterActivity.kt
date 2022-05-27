@@ -50,14 +50,16 @@ class RegisterActivity : AppCompatActivity() {
             playSequentially(
                 title,
                 desc,
+                registerBtn,
+                backToLoginBtn,
+            )
+            playTogether(
                 nameTextView,
                 nameEditTextLayout,
                 emailTextView,
                 emailEditTextLayout,
                 passwordTextView,
                 passwordEditTextLayout,
-                registerBtn,
-                backToLoginBtn,
             )
             startDelay = 500
         }.start()
