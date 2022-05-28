@@ -37,12 +37,12 @@ class StoryRepository constructor(
 
     suspend fun postStoryItem(
         token: String,
-        file: MultipartBody.Part,
-        description: RequestBody
+        photo: MultipartBody.Part,
+        description: String,
     ): Flow<Result<StoryAddResponse>> = flow {
         try {
             val bearer = addBearerPrefix(token)
-            val response = services.uploadImage(bearer, file, description)
+            val response = services.uploadImage(bearer, photo, description)
             emit(Result.success(response))
         } catch (e: Exception) {
             e.printStackTrace()

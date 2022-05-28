@@ -36,7 +36,7 @@ interface APIServices {
     @POST("stories")
     suspend fun uploadImage(
         @Header("Authorization") token: String,
-        @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part("photo") photo: MultipartBody.Part,
+        @Part("description") description: String,
     ): StoryAddResponse
 }
