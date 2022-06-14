@@ -50,14 +50,14 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/shipper_layout"
+            android:id="@+id/story_description_layout_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:layout_margin="8dp">
 
             <EditText
-                android:id="@+id/shipper_field"
+                android:id="@+id/story_description_et"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:gravity="top"
@@ -74,7 +74,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/uploadButton"
+            android:id="@+id/upload_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

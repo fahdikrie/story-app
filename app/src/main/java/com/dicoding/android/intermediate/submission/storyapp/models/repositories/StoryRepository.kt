@@ -2,9 +2,8 @@ package com.dicoding.android.intermediate.submission.storyapp.models.repositorie
 
 import android.util.Log
 import com.dicoding.android.intermediate.submission.storyapp.api.APIServices
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryAddResponse
+import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryUploadResponse
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryListResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserPreferences
 import com.dicoding.android.intermediate.submission.storyapp.utils.addBearerPrefix
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -38,15 +37,15 @@ class StoryRepository constructor(
     suspend fun postStoryItem(
         token: String,
         photo: MultipartBody.Part,
-        description: String,
-    ): Flow<Result<StoryAddResponse>> = flow {
+        description: RequestBody,
+    ): Flow<Result<StoryUploadResponse>> = flow {
         try {
             val bearer = addBearerPrefix(token)
             val response = services.uploadImage(bearer, photo, description)
             emit(Result.success(response))
         } catch (e: Exception) {
             e.printStackTrace()
-            val failure = Result.failure<StoryAddResponse>(e)
+            val failure = Result.failure<StoryUploadResponse>(e)
             emit(failure)
         }
     }

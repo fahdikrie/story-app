@@ -1,9 +1,6 @@
 package com.dicoding.android.intermediate.submission.storyapp.api
 
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.LoginResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.RegisterResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryAddResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryListResponse
+import com.dicoding.android.intermediate.submission.storyapp.models.responses.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -36,7 +33,7 @@ interface APIServices {
     @POST("stories")
     suspend fun uploadImage(
         @Header("Authorization") token: String,
-        @Part("photo") photo: MultipartBody.Part,
-        @Part("description") description: String,
-    ): StoryAddResponse
+        @Part photo: MultipartBody.Part,
+        @Part("description") description: RequestBody,
+    ): StoryUploadResponse
 }
