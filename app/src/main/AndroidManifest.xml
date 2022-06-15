@@ -29,9 +29,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp">
         <activity
-            android:name=".views.SettingsActivity"
-            android:exported="false" />
-        <activity
             android:name=".views.storyupload.StoryUploadActivity"
             android:exported="false" />
         <activity
