@@ -9,6 +9,7 @@
 
     <ImageView
         android:id="@+id/story_detail_image_iv"
+        android:transitionName="photoUrl"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="108dp"
@@ -21,6 +22,7 @@
 
     <TextView
         android:id="@+id/story_detail_title_tv"
+        android:transitionName="name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
@@ -51,6 +53,7 @@
 
     <TextView
         android:id="@+id/story_detail_desc_tv"
+        android:transitionName="description"
         android:layout_width="353dp"
         android:layout_height="25dp"
         android:layout_marginVertical="8dp"

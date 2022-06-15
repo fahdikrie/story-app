@@ -1,9 +1,12 @@
 package com.dicoding.android.intermediate.submission.storyapp.views.storylist
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ItemStoryCardBinding
@@ -18,35 +21,29 @@ class StoryListAdapter(
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
-    class ViewHolder(private val binding: ItemStoryCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        private val binding: ItemStoryCardBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(context: Context, story: StoryItem) {
-//            val circularProgress = CircularProgressDrawable(this)
-//            circularProgress.strokeWidth = 5f
-//            circularProgress.centerRadius = 30f
-//            circularProgress.start()
-
             binding.apply {
                 storyTitleTv.text = story.name
                 storyDescTv.text = story.description
-                Glide.with(itemView.context)
+                Glide.with(context)
                     .load(story.photoUrl)
                     .fitCenter()
                     .into(storyImageIv)
                 
                 root.setOnClickListener {
-//                    val optionsCompat: ActivityOptionsCompat =
-//                        ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                            root.context as Activity,
-//                            Pair(ivStoryImage, "story_image"),
-//                            Pair(tvStoryUsername, "username"),
-//                            Pair(tvStoryDate, "date"),
-//                            Pair(tvStoryDescription, "description")
-//                        )
-
                     Intent(context, StoryDetailActivity::class.java).also { intent ->
                         intent.putExtra(EXTRA_STORY_DETAIL, story)
-                        context.startActivity(intent)
+                        val optionsCompat: ActivityOptionsCompat =
+                            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                context as Activity,
+                                Pair(storyImageIv, "photoUrl"),
+                                Pair(storyTitleTv, "name"),
+                                Pair(storyDescTv, "description"),
+                            )
+                        context.startActivity(intent, optionsCompat.toBundle())
                     }
                 }
             }

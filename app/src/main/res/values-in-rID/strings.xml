@@ -44,6 +44,7 @@
     <string name="upload">Unggah</string>
     <string name="preview_image">Ikhtisar Gambar</string>
     <string name="story_description_layout">Deskripsi</string>
+    <string name="story_description_layout_required">Deskripsi bersifat wajib</string>
     <string name="toast_story_upload_success">Story berhasil diungah!</string>
     <string name="toast_story_upload_failed">Terjadi kesalahan ketika mengunggah Story!</string>
     <string name="toast_story_upload_image_required">Tambahkan gambar terlebih dahulu</string>

@@ -209,7 +209,7 @@ class StoryUploadActivity : AppCompatActivity() {
     private fun validateData(): Boolean {
         val descFormData = binding.storyDescriptionEt.text.toString()
         if (descFormData.isEmpty() or descFormData.isBlank()) {
-            binding.storyDescriptionEt.error = "Description is required"
+            binding.storyDescriptionEt.error = getString(R.string.story_description_layout_required)
             return false
         }
 
