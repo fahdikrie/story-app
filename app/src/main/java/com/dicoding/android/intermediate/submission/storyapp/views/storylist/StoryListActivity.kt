@@ -19,6 +19,7 @@ import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryListBinding
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
+import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity
@@ -67,6 +68,12 @@ class StoryListActivity : AppCompatActivity() {
                 return true
             }
             R.id.logout -> {
+                lifecycleScope.launch {
+                    storyListViewModel.logout()
+                    Intent(this@StoryListActivity, LoginActivity::class.java).also { intent ->
+                        startActivity(intent)
+                        finish()
+                    }                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)

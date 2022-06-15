@@ -43,13 +43,9 @@ class UserRepository constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    suspend fun saveUser(user: UserModel) {
-        preferences.saveUser(user)
-    }
+    suspend fun saveUser(user: UserModel) = preferences.saveUser(user)
 
-    suspend fun logout() {
-        preferences.logout()
-    }
+    suspend fun logout() = preferences.logout()
 
     fun getUser() = preferences.getUser()
 

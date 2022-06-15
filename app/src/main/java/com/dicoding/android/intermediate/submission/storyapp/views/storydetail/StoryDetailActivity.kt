@@ -1,9 +1,11 @@
 package com.dicoding.android.intermediate.submission.storyapp.views.storydetail
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
@@ -47,6 +49,7 @@ class StoryDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                 return true
             }
             R.id.logout -> {
