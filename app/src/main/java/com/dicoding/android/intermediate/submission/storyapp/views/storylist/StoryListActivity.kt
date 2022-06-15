@@ -73,7 +73,8 @@ class StoryListActivity : AppCompatActivity() {
                     Intent(this@StoryListActivity, LoginActivity::class.java).also { intent ->
                         startActivity(intent)
                         finish()
-                    }                }
+                    }
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)
