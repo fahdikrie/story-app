@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityLoginBinding
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.LoginResponse
 import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserModel
@@ -92,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                         result.onSuccess {
                             Toast.makeText(
                                 applicationContext,
-                                "User successfully logged in!",
+                                getString(R.string.toast_login_success),
                                 Toast.LENGTH_SHORT
                             ).show()
 
@@ -116,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
                         result.onFailure {
                             Toast.makeText(
                                 applicationContext,
-                                "Error when logging in user!",
+                                getString(R.string.toast_login_failed),
                                 Toast.LENGTH_SHORT
                             ).show()
                             handler.postDelayed({

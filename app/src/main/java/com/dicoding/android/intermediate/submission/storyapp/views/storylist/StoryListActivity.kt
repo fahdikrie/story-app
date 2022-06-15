@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -62,6 +63,7 @@ class StoryListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                 return true
             }
             R.id.logout -> {
@@ -85,13 +87,23 @@ class StoryListActivity : AppCompatActivity() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 storyListViewModel.getStoryList(token).collect {
                     it.onSuccess { response ->
-                        response.listStory?.let { storyList -> showRecyclerList(storyList) }
+                        response.listStory?.let { storyList ->
+                            if (storyList.isEmpty()) {
+                                Toast.makeText(
+                                    this@StoryListActivity,
+                                    getString(R.string.toast_story_load_empty),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                            showRecyclerList(storyList)
+                        }
                     }
 
                     it.onFailure {
                         Toast.makeText(
                             this@StoryListActivity,
-                            "Oops! error on loading stories",
+                            getString(R.string.toast_story_load_failed),
                             Toast.LENGTH_SHORT
                         ).show()
                     }

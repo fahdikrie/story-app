@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityRegisterBinding
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.UserViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
@@ -106,7 +107,7 @@ class RegisterActivity : AppCompatActivity() {
                         result.onSuccess {
                             Toast.makeText(
                                 applicationContext,
-                                "User successfully registered!",
+                                getString(R.string.toast_register_success),
                                 Toast.LENGTH_SHORT
                             ).show()
                             handler.postDelayed({
@@ -117,7 +118,7 @@ class RegisterActivity : AppCompatActivity() {
                         result.onFailure {
                             Toast.makeText(
                                 applicationContext,
-                                "Error when registering user!",
+                                getString(R.string.toast_register_failed),
                                 Toast.LENGTH_SHORT
                             ).show()
                             handler.postDelayed({

@@ -175,7 +175,7 @@ class StoryUploadActivity : AppCompatActivity() {
                         response.onSuccess {
                             Toast.makeText(
                                 this@StoryUploadActivity,
-                                "Story successfully uploaded!",
+                                getString(R.string.toast_story_upload_success),
                                 Toast.LENGTH_SHORT
                             ).show()
                             finish()
@@ -184,7 +184,7 @@ class StoryUploadActivity : AppCompatActivity() {
                         response.onFailure {
                             Toast.makeText(
                                 this@StoryUploadActivity,
-                                "Error when uploading story",
+                                getString(R.string.toast_story_upload_success),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -206,7 +206,7 @@ class StoryUploadActivity : AppCompatActivity() {
         if (getFile == null) {
             Toast.makeText(
                 this,
-                "Image is required",
+                getString(R.string.toast_story_upload_image_required),
                 Toast.LENGTH_SHORT
             ).show()
             return false
@@ -234,7 +234,7 @@ class StoryUploadActivity : AppCompatActivity() {
             if (!allPermissionsGranted()) {
                 Toast.makeText(
                     this,
-                    "Tidak mendapatkan permission.",
+                    getString(R.string.toast_story_upload_no_permission),
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()
