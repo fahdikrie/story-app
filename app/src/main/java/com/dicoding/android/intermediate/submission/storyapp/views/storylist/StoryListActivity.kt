@@ -57,7 +57,7 @@ class StoryListActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.option_menu, menu)
+        menuInflater.inflate(R.menu.option_menu_post_login, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

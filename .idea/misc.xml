@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/activity_story_upload.xml" value="0.217440543601359" />
         <entry key="app/src/main/res/layout/item_story_card.xml" value="0.2584865039288587" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.23703703703703705" />
+        <entry key="app/src/main/res/menu/option_menu_pre_login.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/xml/file_paths.xml" value="0.23703703703703705" />
       </map>
     </option>

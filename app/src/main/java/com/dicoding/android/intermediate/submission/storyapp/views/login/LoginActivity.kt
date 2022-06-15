@@ -3,10 +3,15 @@ package com.dicoding.android.intermediate.submission.storyapp.views.login
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -45,7 +50,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setHeader() {
-        supportActionBar?.hide()
+        supportActionBar?.title = ""
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#FF3700B3")))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.option_menu_pre_login, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_settings -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun playAnimation() {

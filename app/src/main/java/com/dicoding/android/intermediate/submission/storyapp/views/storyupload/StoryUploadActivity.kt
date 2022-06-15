@@ -11,6 +11,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -26,6 +27,7 @@ import com.dicoding.android.intermediate.submission.storyapp.utils.createCustomT
 import com.dicoding.android.intermediate.submission.storyapp.utils.reduceFileImage
 import com.dicoding.android.intermediate.submission.storyapp.utils.uriToFile
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
+import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
@@ -77,16 +79,24 @@ class StoryUploadActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.option_menu, menu)
+        menuInflater.inflate(R.menu.option_menu_post_login, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                 return true
             }
             R.id.logout -> {
+                lifecycleScope.launch {
+                    storyUploadViewModel.logout()
+                    Intent(this@StoryUploadActivity, LoginActivity::class.java).also { intent ->
+                        startActivity(intent)
+                        finish()
+                    }
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)

@@ -7,6 +7,7 @@ import com.dicoding.android.intermediate.submission.storyapp.models.injections.S
 import com.dicoding.android.intermediate.submission.storyapp.models.injections.UserInjection
 import com.dicoding.android.intermediate.submission.storyapp.models.repositories.StoryRepository
 import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
+import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailViewModel
 import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListViewModel
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadViewModel
 
@@ -20,8 +21,11 @@ class StoryViewModelFactory(
             modelClass.isAssignableFrom(StoryListViewModel::class.java) -> {
                 StoryListViewModel(storyRepository, userRepository) as T
             }
+            modelClass.isAssignableFrom(StoryDetailViewModel::class.java) -> {
+                StoryDetailViewModel(userRepository) as T
+            }
             modelClass.isAssignableFrom(StoryUploadViewModel::class.java) -> {
-                StoryUploadViewModel(storyRepository) as T
+                StoryUploadViewModel(storyRepository, userRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

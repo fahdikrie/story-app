@@ -25,24 +25,20 @@ class EditTextPassword : TextInputEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Password"
+        hint = context.getString(R.string.password_input_label_text)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 
     private fun init() {
         addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // Do nothing.
-            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 if (s.toString().length < 6)
                     setError(context.getString(R.string.edit_text_password_error_msg), null)
             }
 
-            override fun afterTextChanged(p0: Editable?) {
-                // Do nothing.
-            }
+            override fun afterTextChanged(p0: Editable?) {}
         })
     }
 }

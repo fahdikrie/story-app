@@ -27,15 +27,13 @@ class EditTextEmail : TextInputEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Email"
+        hint = context.getString(R.string.email_input_label_text)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 
     private fun init() {
         addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // Do nothing.
-            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             /**
              * Reference:
@@ -48,9 +46,7 @@ class EditTextEmail : TextInputEditText {
                     setError(context.getString(R.string.edit_text_email_error_msg), null)
             }
 
-            override fun afterTextChanged(p0: Editable?) {
-                // Do nothing.
-            }
+            override fun afterTextChanged(p0: Editable?) {}
         })
     }
 }

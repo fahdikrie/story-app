@@ -78,7 +78,6 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:alpha="0"
-            android:hint="@string/name_input_label_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_input_label_tv"
@@ -88,8 +87,9 @@
                 android:id="@+id/name_input_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/name_input_label_text"
                 android:ems="10"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
