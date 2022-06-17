@@ -1,0 +1,52 @@
+<resources>
+    <!--Main Page-->
+    <string name="app_name">Story App</string>
+    <string name="app_logo_alt">app_logo</string>
+
+    <!--Login Page-->
+    <string name="title_login_page">Masuk</string>
+    <string name="desc_login_page">Masuk terlebih dahulu sebelum menggunakan Story App™</string>
+    <string name="login_asset_alt">Gambar Login</string>
+    <string name="password_input_label_text">Kata Sandi</string>
+    <string name="email_input_label_text">Email</string>
+    <string name="login_button_text">Masuk</string>
+    <string name="edit_text_password_error_msg">Kata Sandi tidak boleh kurang dari 6 karakter</string>
+    <string name="edit_text_email_error_msg">Email tidak valid</string>
+    <string name="register_first_button_text">Mendaftar Terlebih Dahulu</string>
+    <string name="toast_login_success">Kamu berhasil masuk!</string>
+    <string name="toast_login_failed">Terdapat kesalahan ketika berupaya masuk!</string>
+
+    <!--Register Page-->
+    <string name="title_register_page">Buat Akun</string>
+    <string name="desc_register_page">Mendaftar terlebih dahulu sebelum menggunakan Story App™</string>
+    <string name="register_asset_alt">Gambar Buat Akun</string>
+    <string name="name_input_label_text">Nama Lengkap</string>
+    <string name="register_button_text">Daftar</string>
+    <string name="back_to_login_btn_text">Sudah punya akun?</string>
+    <string name="menu_logout">Keluar</string>
+    <string name="menu_settings">Pengaturan</string>
+    <string name="toast_register_success">Kamu berhasil mendaftar!</string>
+    <string name="toast_register_failed">Terdapat kesalahan ketika berupaya mendaftar!</string>
+
+    <!--Story List Page-->
+    <string name="story_image_alt">Gambar Story</string>
+    <string name="toast_story_load_empty">Hmm… Sepertinya belum ada Story baru hari ini</string>
+    <string name="toast_story_load_failed">Ups! Terjadi kesalahan dalam memuat Story</string>
+
+    <!--Story Detail Page-->
+    <string name="story_detail_image_alt">Gambar Story</string>
+    <string name="created_at_text">Dibuat pada %s</string>
+    <string name="add_story_fab_alt">Tombol Tambah Story</string>
+
+    <!--Story Upload Page-->
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Unggah</string>
+    <string name="preview_image">Ikhtisar Gambar</string>
+    <string name="story_description_layout">Deskripsi</string>
+    <string name="story_description_layout_required">Deskripsi bersifat wajib</string>
+    <string name="toast_story_upload_success">Story berhasil diungah!</string>
+    <string name="toast_story_upload_failed">Terjadi kesalahan ketika mengunggah Story!</string>
+    <string name="toast_story_upload_image_required">Tambahkan gambar terlebih dahulu</string>
+    <string name="toast_story_upload_no_permission">Gagal mendapatkan permission.</string>
+</resources>
