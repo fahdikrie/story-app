@@ -22,6 +22,7 @@ import com.dicoding.android.intermediate.submission.storyapp.views.factories.Sto
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
+import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity.Companion.EXTRA_TOKEN_UPLOAD
 import kotlinx.coroutines.flow.collect
@@ -65,6 +66,10 @@ class StoryListActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.settings -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                return true
+            }
+            R.id.story_map -> {
+                startActivity(Intent(this, StoryMapActivity::class.java))
                 return true
             }
             R.id.logout -> {
