@@ -31,6 +31,7 @@
     <string name="toast_story_load_empty">Hmm… Apparently there\'s no new uploaded story today</string>
     <string name="toast_story_load_failed">Oops! error on loading stories</string>
     <string name="menu_logout">Logout</string>
+    <string name="menu_maps">Maps</string>
     <string name="menu_settings">Settings</string>
 
     <!--Story Detail Page-->
@@ -49,4 +50,7 @@
     <string name="toast_story_upload_failed">Error when uploading story</string>
     <string name="toast_story_upload_image_required">Image is required</string>
     <string name="toast_story_upload_no_permission">Failed to get permission.</string>
+
+    <!--Story Map Page-->
+    <string name="title_activity_story_map">Map of Stories</string>
 </resources>
