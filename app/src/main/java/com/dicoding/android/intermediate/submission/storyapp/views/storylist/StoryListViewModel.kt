@@ -1,17 +1,18 @@
 package com.dicoding.android.intermediate.submission.storyapp.views.storylist
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagingData
+import com.dicoding.android.intermediate.submission.storyapp.data.entities.StoryEntity
 import com.dicoding.android.intermediate.submission.storyapp.data.repositories.StoryRepository
 import com.dicoding.android.intermediate.submission.storyapp.data.repositories.UserRepository
-import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryListResponse
-import kotlinx.coroutines.flow.Flow
 
 class StoryListViewModel (
     private val storyRepository: StoryRepository,
     private val userRepository: UserRepository,
 ) : ViewModel() {
 
-    suspend fun getStoryList(token: String): Flow<Result<StoryListResponse>> =
+    fun getStoryList(token: String): LiveData<PagingData<StoryEntity>> =
         storyRepository.getStoryList(token)
 
     suspend fun logout() = userRepository.logout()

@@ -50,7 +50,6 @@ class StoryMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         token = intent.getStringExtra(EXTRA_TOKEN_MAP)!!
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -63,15 +62,11 @@ class StoryMapActivity : AppCompatActivity(), OnMapReadyCallback {
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#FF3700B3")))
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -102,7 +97,7 @@ class StoryMapActivity : AppCompatActivity(), OnMapReadyCallback {
         lifecycleScope.launch {
             storyMapViewModel.getStoryListWithLocation(token).collect {
                 it.onSuccess { response ->
-                    response.listStory?.let { storyList ->
+                    response.listStory.let { storyList ->
                         if (storyList.isEmpty()) {
                             Toast.makeText(
                                 this@StoryMapActivity,
@@ -118,7 +113,7 @@ class StoryMapActivity : AppCompatActivity(), OnMapReadyCallback {
                                 MarkerOptions()
                                     .position(latLng)
                                     .title(story.name)
-                                    .snippet(story.createdAt?.withDateFormat() ?: "unknown created date")
+                                    .snippet(story.createdAt.withDateFormat())
                                     .icon(vectorToBitmap(R.drawable.ic_baseline_chat_bubble_24, Color.parseColor("#3700B3")))
                             )
                             marker?.showInfoWindow()

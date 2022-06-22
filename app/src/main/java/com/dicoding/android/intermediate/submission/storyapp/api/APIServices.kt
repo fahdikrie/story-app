@@ -18,20 +18,20 @@ interface APIServices {
     @POST("login")
     suspend fun postLogin(
         @Field("email") email: String,
-        @Field("password") password: String
+        @Field("password") password: String,
     ): LoginResponse
 
     @GET("stories")
     suspend fun getStoryList(
         @Header("Authorization") token: String,
         @Query("page") page: Int?,
-        @Query("size") size: Int?
+        @Query("size") size: Int?,
     ): StoryListResponse
 
     @GET("stories")
     suspend fun getStoryWithLocationList(
         @Header("Authorization") token: String,
-        @Query("location") page: Int,
+        @Query("location") location: Int,
     ): StoryListResponse
 
     @Multipart

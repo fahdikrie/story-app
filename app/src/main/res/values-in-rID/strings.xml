@@ -33,6 +33,7 @@
     <string name="menu_logout">Keluar</string>
     <string name="menu_maps">Peta</string>
     <string name="menu_settings">Pengaturan</string>
+    <string name="retry">Muat Ulang</string>
 
     <!--Story Detail Page-->
     <string name="story_detail_image_alt">Gambar Story</string>

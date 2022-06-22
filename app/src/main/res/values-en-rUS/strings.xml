@@ -33,6 +33,7 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_maps">Maps</string>
     <string name="menu_settings">Settings</string>
+    <string name="retry">Retry</string>
 
     <!--Story Detail Page-->
     <string name="story_detail_image_alt">Story Image</string>

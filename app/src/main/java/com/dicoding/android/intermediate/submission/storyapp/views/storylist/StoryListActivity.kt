@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,11 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryListBinding
-import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
-import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
-import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
 import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity.Companion.EXTRA_TOKEN_MAP
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity
@@ -46,10 +42,13 @@ class StoryListActivity : AppCompatActivity() {
         setContentView(view)
 
         token = intent.getStringExtra(EXTRA_TOKEN)!!
+        recyclerView = binding.storyListRv
+        storyListAdapter = StoryListAdapter()
 
         setHeader()
         bindFloatingActionBtn()
-        bindViewModelToRV()
+        showRecyclerView()
+
     }
 
     private fun setHeader() {
@@ -98,53 +97,32 @@ class StoryListActivity : AppCompatActivity() {
         }
     }
 
-    private fun bindViewModelToRV() {
+    private fun showRecyclerView() {
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = storyListAdapter.withLoadStateFooter(
+            footer = StoryLoadingStateAdapter {
+                storyListAdapter.retry()
+            }
+        )
+
+        val recyclerViewState = recyclerView.layoutManager?.onSaveInstanceState()
+
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                storyListViewModel.getStoryList(token).collect {
-                    it.onSuccess { response ->
-                        response.listStory?.let { storyList ->
-                            if (storyList.isEmpty()) {
-                                Toast.makeText(
-                                    this@StoryListActivity,
-                                    getString(R.string.toast_story_load_empty),
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-
-                            showRecyclerList(storyList)
-                        }
-                    }
-
-                    it.onFailure {
-                        Toast.makeText(
-                            this@StoryListActivity,
-                            getString(R.string.toast_story_load_failed),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                storyListViewModel.getStoryList(token).observeForever {
+                    storyListAdapter.submitData(lifecycle, it)
                 }
+                recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
             }
         }
     }
 
-    private fun showRecyclerList(storyList: List<StoryItem?>) {
-        val linearLayoutManager = LinearLayoutManager(this)
-        storyListAdapter = StoryListAdapter(storyList)
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
 
-        recyclerView = binding.storyListRv
-        recyclerView.apply {
-            adapter = storyListAdapter
-            layoutManager = linearLayoutManager
+        if (this::recyclerView.isInitialized) {
+            recyclerView.smoothScrollToPosition(0)
         }
-
-        storyListAdapter.setOnItemClickCallback(object : StoryListAdapter.OnItemClickCallback {
-            override fun onItemClicked(story: StoryItem?) {
-                val intentToDetail = Intent(this@StoryListActivity, StoryDetailActivity::class.java)
-                intentToDetail.putExtra(EXTRA_STORY_DETAIL, story)
-                startActivity(intentToDetail)
-            }
-        })
     }
 
     companion object {
