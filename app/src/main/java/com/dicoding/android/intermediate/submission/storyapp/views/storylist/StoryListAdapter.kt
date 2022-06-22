@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.android.intermediate.submission.storyapp.data.entities.StoryEntity
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ItemStoryCardBinding
+import com.dicoding.android.intermediate.submission.storyapp.utils.getAddressName
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
 
@@ -46,6 +47,11 @@ class StoryListAdapter :
                     .load(story.photoUrl)
                     .fitCenter()
                     .into(storyImageIv)
+                if (story.lat != null && story.lon != null) {
+                    storyLocationTv.text = getAddressName(context, story.lat, story.lon)
+                } else {
+                    storyLocationTv.text = "-"
+                }
 
                 root.setOnClickListener {
                     val optionsCompat: ActivityOptionsCompat =
@@ -54,6 +60,7 @@ class StoryListAdapter :
                             Pair(storyImageIv, "photoUrl"),
                             Pair(storyTitleTv, "name"),
                             Pair(storyDescTv, "description"),
+                            Pair(storyLocationTv, "location"),
                         )
 
                     Intent(context, StoryDetailActivity::class.java).also {
