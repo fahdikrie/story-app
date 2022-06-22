@@ -1,6 +1,5 @@
 package com.dicoding.android.intermediate.submission.storyapp.models.repositories
 
-import android.util.Log
 import com.dicoding.android.intermediate.submission.storyapp.api.APIServices
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryUploadResponse
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryListResponse
@@ -51,10 +50,12 @@ class StoryRepository constructor(
         token: String,
         photo: MultipartBody.Part,
         description: RequestBody,
+        lat: RequestBody? = null,
+        lon: RequestBody? = null,
     ): Flow<Result<StoryUploadResponse>> = flow {
         try {
             val bearer = addBearerPrefix(token)
-            val response = services.uploadImage(bearer, photo, description)
+            val response = services.uploadStory(bearer, photo, description, lat, lon)
             emit(Result.success(response))
         } catch (e: Exception) {
             e.printStackTrace()

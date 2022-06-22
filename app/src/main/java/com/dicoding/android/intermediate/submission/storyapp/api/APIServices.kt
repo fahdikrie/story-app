@@ -3,7 +3,6 @@ package com.dicoding.android.intermediate.submission.storyapp.api
 import com.dicoding.android.intermediate.submission.storyapp.models.responses.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.http.*
 
 interface APIServices {
@@ -37,9 +36,11 @@ interface APIServices {
 
     @Multipart
     @POST("stories")
-    suspend fun uploadImage(
+    suspend fun uploadStory(
         @Header("Authorization") token: String,
         @Part photo: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?,
     ): StoryUploadResponse
 }

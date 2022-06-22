@@ -11,8 +11,13 @@ class StoryUploadViewModel constructor(
     private val userRepository: UserRepository,
 ) : ViewModel() {
 
-    suspend fun postStoryItem(token: String, photo: MultipartBody.Part, description: RequestBody) =
-        repository.postStoryItem(token, photo, description)
+    suspend fun postStoryItem(
+        token: String,
+        photo: MultipartBody.Part,
+        description: RequestBody,
+        lat: RequestBody? = null,
+        lon: RequestBody? = null,
+    ) = repository.postStoryItem(token, photo, description, lat, lon)
 
     suspend fun logout() = userRepository.logout()
 }
