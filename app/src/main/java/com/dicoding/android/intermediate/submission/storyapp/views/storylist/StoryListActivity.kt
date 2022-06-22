@@ -23,6 +23,7 @@ import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginAc
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
 import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity
+import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity.Companion.EXTRA_TOKEN_MAP
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity.Companion.EXTRA_TOKEN_UPLOAD
 import kotlinx.coroutines.flow.collect
@@ -69,7 +70,10 @@ class StoryListActivity : AppCompatActivity() {
                 return true
             }
             R.id.story_map -> {
-                startActivity(Intent(this, StoryMapActivity::class.java))
+                Intent(this, StoryMapActivity::class.java).also { intent ->
+                    intent.putExtra(EXTRA_TOKEN_MAP, token)
+                    startActivity(intent)
+                }
                 return true
             }
             R.id.logout -> {
