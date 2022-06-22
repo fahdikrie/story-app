@@ -34,13 +34,14 @@
             android:layout_marginVertical="16dp"
             android:layout_marginTop="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
             card_view:layout_constraintEnd_toEndOf="@id/story_image_iv"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/story_image_iv"
+            tools:ignore="TextContrastCheck"
             tools:text="Story Title" />
 
         <TextView
@@ -49,18 +50,39 @@
             android:layout_height="25dp"
             android:layout_marginVertical="8dp"
             android:layout_marginTop="4dp"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            android:visibility="visible"
-            android:scrollHorizontally="false"
             android:ellipsize="end"
             android:maxLines="2"
+            android:scrollHorizontally="false"
+            android:textAlignment="viewStart"
             android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible"
             card_view:layout_constraintEnd_toEndOf="@id/story_title_tv"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="@id/story_title_tv"
             card_view:layout_constraintTop_toBottomOf="@id/story_title_tv"
+            tools:ignore="TextContrastCheck"
             tools:text="Story Description" />
+
+        <TextView
+            android:id="@+id/story_location_tv"
+            android:layout_width="353dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:scrollHorizontally="false"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="visible"
+            card_view:layout_constraintEnd_toEndOf="@id/story_desc_tv"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@id/story_desc_tv"
+            card_view:layout_constraintTop_toBottomOf="@id/story_desc_tv"
+            tools:ignore="TextContrastCheck"
+            tools:text="Story Location" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

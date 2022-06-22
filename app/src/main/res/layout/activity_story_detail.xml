@@ -38,6 +38,7 @@
 
     <TextView
         android:id="@+id/story_detail_date_tv"
+        android:transitionName="location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
@@ -50,6 +51,21 @@
         app:layout_constraintTop_toBottomOf="@+id/story_detail_title_tv"
         tools:ignore="TextContrastCheck"
         tools:text="Created At" />
+
+    <TextView
+        android:id="@+id/story_detail_location_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/story_detail_date_tv"
+        tools:ignore="TextContrastCheck"
+        tools:text="From: " />
 
     <TextView
         android:id="@+id/story_detail_desc_tv"
@@ -68,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/story_detail_date_tv"
+        app:layout_constraintTop_toBottomOf="@+id/story_detail_location_tv"
         tools:ignore="TextContrastCheck"
         tools:text="Story Description" />
 

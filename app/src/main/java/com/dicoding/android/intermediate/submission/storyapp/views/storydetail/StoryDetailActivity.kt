@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.data.entities.StoryEntity
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryDetailBinding
+import com.dicoding.android.intermediate.submission.storyapp.utils.getAddressName
 import com.dicoding.android.intermediate.submission.storyapp.utils.withDateFormat
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
@@ -89,6 +90,11 @@ class StoryDetailActivity : AppCompatActivity() {
                 .load(story.photoUrl)
                 .fitCenter()
                 .into(storyDetailImageIv)
+            if (story.lat != null && story.lon != null) {
+                storyDetailLocationTv.text = getAddressName(applicationContext, story.lat!!, story.lon!!)
+            } else {
+                storyDetailLocationTv.text = "-"
+            }
         }
     }
 
