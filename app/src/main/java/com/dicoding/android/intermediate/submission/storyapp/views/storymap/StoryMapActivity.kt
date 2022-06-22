@@ -18,7 +18,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.lifecycleScope
 import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryMapBinding
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryItem
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.utils.withDateFormat
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.google.android.gms.maps.CameraUpdateFactory

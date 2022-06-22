@@ -1,4 +1,4 @@
-package com.dicoding.android.intermediate.submission.storyapp.models.responses
+package com.dicoding.android.intermediate.submission.storyapp.data.responses
 
 import com.google.gson.annotations.SerializedName
 

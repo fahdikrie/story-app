@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryListBinding
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryItem
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
@@ -26,7 +26,6 @@ import com.dicoding.android.intermediate.submission.storyapp.views.storymap.Stor
 import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity.Companion.EXTRA_TOKEN_MAP
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storyupload.StoryUploadActivity.Companion.EXTRA_TOKEN_UPLOAD
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class StoryListActivity : AppCompatActivity() {

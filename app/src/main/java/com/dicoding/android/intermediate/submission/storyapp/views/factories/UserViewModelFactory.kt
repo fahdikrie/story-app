@@ -3,8 +3,8 @@ package com.dicoding.android.intermediate.submission.storyapp.views.factories
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.android.intermediate.submission.storyapp.models.injections.UserInjection
-import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
+import com.dicoding.android.intermediate.submission.storyapp.data.injections.UserInjection
+import com.dicoding.android.intermediate.submission.storyapp.data.repositories.UserRepository
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginViewModel
 import com.dicoding.android.intermediate.submission.storyapp.views.main.MainViewModel
 import com.dicoding.android.intermediate.submission.storyapp.views.register.RegisterViewModel

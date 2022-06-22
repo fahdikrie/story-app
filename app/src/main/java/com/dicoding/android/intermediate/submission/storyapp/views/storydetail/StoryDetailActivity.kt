@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryDetailBinding
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryItem
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.utils.withDateFormat
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
