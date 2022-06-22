@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +29,8 @@ import com.dicoding.android.intermediate.submission.storyapp.utils.reduceFileIma
 import com.dicoding.android.intermediate.submission.storyapp.utils.uriToFile
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
@@ -39,18 +42,23 @@ import java.io.File
 
 class StoryUploadActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStoryUploadBinding
+    private lateinit var currentPhotoPath: String
     private lateinit var storyViewModelFactory: StoryViewModelFactory
     private val storyUploadViewModel: StoryUploadViewModel by viewModels {
         storyViewModelFactory
     }
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var token: String
-    private lateinit var currentPhotoPath: String
+
     private var getFile: File? = null
+    private var latLon: Location? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStoryUploadBinding.inflate(layoutInflater)
         storyViewModelFactory = StoryViewModelFactory.getInstance(this)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val view = binding.root
         setContentView(view)
 
@@ -106,7 +114,10 @@ class StoryUploadActivity : AppCompatActivity() {
     private fun bindButtons() {
         binding.cameraBtn.setOnClickListener { startTakePhoto() }
         binding.galleryBtn.setOnClickListener { startGallery() }
-        binding.uploadBtn.setOnClickListener { uploadImage() }
+        binding.uploadBtn.setOnClickListener { uploadStory() }
+        binding.swIsUsingLocation.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) getUserLastLocation()
+        }
     }
 
     private fun startGallery() {
@@ -160,7 +171,39 @@ class StoryUploadActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImage() {
+    private val launcherIntentLocation =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            when {
+                permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
+                    getUserLastLocation()
+                }
+                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+                    getUserLastLocation()
+                }
+                else -> {}
+            }
+        }
+
+    private fun getUserLastLocation() {
+        if (checkLocationPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+            checkLocationPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+        ){
+            fusedLocationClient.lastLocation.addOnSuccessListener {
+                latLon = it
+            }
+        } else {
+            launcherIntentLocation.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
+        }
+    }
+
+    private fun uploadStory() {
         val isFormValid: Boolean = validateData()
 
         if (isFormValid) {
@@ -177,11 +220,18 @@ class StoryUploadActivity : AppCompatActivity() {
                 file.name,
                 requestImageFile
             )
+            val lat = latLon?.latitude.toString().toRequestBody()
+            val lon = latLon?.longitude.toString().toRequestBody()
 
             lifecycleScope.launchWhenStarted {
                 launch {
                     storyUploadViewModel.postStoryItem(
-                        token, image, description).collect { response ->
+                        token,
+                        image,
+                        description,
+                        lat,
+                        lon,
+                    ).collect { response ->
                         response.onSuccess {
                             Toast.makeText(
                                 this@StoryUploadActivity,
@@ -256,6 +306,12 @@ class StoryUploadActivity : AppCompatActivity() {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
+    private fun checkLocationPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+    }
 
     companion object {
         const val EXTRA_TOKEN_UPLOAD = "extra_token_upload"
