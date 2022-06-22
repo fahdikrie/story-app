@@ -29,9 +29,10 @@ import com.dicoding.android.intermediate.submission.storyapp.utils.reduceFileIma
 import com.dicoding.android.intermediate.submission.storyapp.utils.uriToFile
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
+import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity
+import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity.Companion.EXTRA_TOKEN_MAP
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -95,6 +96,13 @@ class StoryUploadActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.settings -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                return true
+            }
+            R.id.story_map -> {
+                Intent(this, StoryMapActivity::class.java).also { intent ->
+                    intent.putExtra(EXTRA_TOKEN_MAP, token)
+                    startActivity(intent)
+                }
                 return true
             }
             R.id.logout -> {

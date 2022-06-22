@@ -12,8 +12,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.dicoding.android.intermediate.submission.storyapp.R
+import com.dicoding.android.intermediate.submission.storyapp.data.entities.StoryEntity
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityStoryDetailBinding
-import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.utils.withDateFormat
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 class StoryDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStoryDetailBinding
-    private lateinit var story: StoryItem
+    private lateinit var story: StoryEntity
     private lateinit var storyViewModelFactory: StoryViewModelFactory
     private val storyDetailViewModel: StoryDetailViewModel by viewModels {
         storyViewModelFactory
@@ -52,7 +52,7 @@ class StoryDetailActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.option_menu_post_login, menu)
+        menuInflater.inflate(R.menu.option_menu_detail, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -78,12 +78,12 @@ class StoryDetailActivity : AppCompatActivity() {
 
     private fun bindContent() {
         binding.apply {
-            storyDetailTitleTv.text = story.name ?: "-"
+            storyDetailTitleTv.text = story.name
             storyDetailDateTv.text = resources.getString(
                 R.string.created_at_text,
-                story.createdAt?.withDateFormat() ?: "-"
+                story.createdAt.withDateFormat()
             )
-            storyDetailDescTv.text = story.description ?: "-"
+            storyDetailDescTv.text = story.description
             Glide
                 .with(this@StoryDetailActivity)
                 .load(story.photoUrl)
