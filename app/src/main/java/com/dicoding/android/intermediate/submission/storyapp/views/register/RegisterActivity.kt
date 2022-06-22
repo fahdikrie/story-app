@@ -21,7 +21,6 @@ import com.dicoding.android.intermediate.submission.storyapp.databinding.Activit
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.UserViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
