@@ -1,8 +1,8 @@
 package com.dicoding.android.intermediate.submission.storyapp.views.storyupload
 
 import androidx.lifecycle.ViewModel
-import com.dicoding.android.intermediate.submission.storyapp.models.repositories.StoryRepository
-import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
+import com.dicoding.android.intermediate.submission.storyapp.data.repositories.StoryRepository
+import com.dicoding.android.intermediate.submission.storyapp.data.repositories.UserRepository
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 

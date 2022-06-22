@@ -1,4 +1,4 @@
-package com.dicoding.android.intermediate.submission.storyapp.models.sessions
+package com.dicoding.android.intermediate.submission.storyapp.data.sessions
 
 data class UserModel(
     val name: String,

@@ -1,6 +1,6 @@
 package com.dicoding.android.intermediate.submission.storyapp.api
 
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.*
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*

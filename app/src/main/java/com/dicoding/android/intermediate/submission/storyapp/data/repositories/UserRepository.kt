@@ -1,11 +1,11 @@
-package com.dicoding.android.intermediate.submission.storyapp.models.repositories
+package com.dicoding.android.intermediate.submission.storyapp.data.repositories
 
 import android.util.Log
 import com.dicoding.android.intermediate.submission.storyapp.api.APIServices
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.LoginResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.RegisterResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserModel
-import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserPreferences
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.LoginResponse
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.RegisterResponse
+import com.dicoding.android.intermediate.submission.storyapp.data.sessions.UserModel
+import com.dicoding.android.intermediate.submission.storyapp.data.sessions.UserPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

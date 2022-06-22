@@ -18,13 +18,12 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.dicoding.android.intermediate.submission.storyapp.R
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ActivityLoginBinding
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.LoginResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserModel
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.LoginResponse
+import com.dicoding.android.intermediate.submission.storyapp.data.sessions.UserModel
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.UserViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.register.RegisterActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListActivity
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {

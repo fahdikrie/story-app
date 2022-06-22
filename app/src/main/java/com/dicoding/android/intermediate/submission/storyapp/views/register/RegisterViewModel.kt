@@ -1,7 +1,7 @@
 package com.dicoding.android.intermediate.submission.storyapp.views.register
 
 import androidx.lifecycle.ViewModel
-import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
+import com.dicoding.android.intermediate.submission.storyapp.data.repositories.UserRepository
 
 class RegisterViewModel constructor(
     private val repository: UserRepository

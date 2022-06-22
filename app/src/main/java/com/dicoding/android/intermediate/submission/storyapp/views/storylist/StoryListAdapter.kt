@@ -10,7 +10,7 @@ import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.android.intermediate.submission.storyapp.databinding.ItemStoryCardBinding
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryItem
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryItem
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_DETAIL
 

@@ -2,8 +2,8 @@ package com.dicoding.android.intermediate.submission.storyapp.views.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
-import com.dicoding.android.intermediate.submission.storyapp.models.sessions.UserModel
+import com.dicoding.android.intermediate.submission.storyapp.data.repositories.UserRepository
+import com.dicoding.android.intermediate.submission.storyapp.data.sessions.UserModel
 import kotlinx.coroutines.launch
 
 class LoginViewModel (

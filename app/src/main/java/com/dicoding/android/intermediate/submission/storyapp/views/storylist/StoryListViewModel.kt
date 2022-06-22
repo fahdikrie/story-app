@@ -1,9 +1,9 @@
 package com.dicoding.android.intermediate.submission.storyapp.views.storylist
 
 import androidx.lifecycle.ViewModel
-import com.dicoding.android.intermediate.submission.storyapp.models.repositories.StoryRepository
-import com.dicoding.android.intermediate.submission.storyapp.models.repositories.UserRepository
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryListResponse
+import com.dicoding.android.intermediate.submission.storyapp.data.repositories.StoryRepository
+import com.dicoding.android.intermediate.submission.storyapp.data.repositories.UserRepository
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryListResponse
 import kotlinx.coroutines.flow.Flow
 
 class StoryListViewModel (

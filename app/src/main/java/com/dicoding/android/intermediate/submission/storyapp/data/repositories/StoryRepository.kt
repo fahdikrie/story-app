@@ -1,8 +1,8 @@
-package com.dicoding.android.intermediate.submission.storyapp.models.repositories
+package com.dicoding.android.intermediate.submission.storyapp.data.repositories
 
 import com.dicoding.android.intermediate.submission.storyapp.api.APIServices
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryUploadResponse
-import com.dicoding.android.intermediate.submission.storyapp.models.responses.StoryListResponse
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryUploadResponse
+import com.dicoding.android.intermediate.submission.storyapp.data.responses.StoryListResponse
 import com.dicoding.android.intermediate.submission.storyapp.utils.addBearerPrefix
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
