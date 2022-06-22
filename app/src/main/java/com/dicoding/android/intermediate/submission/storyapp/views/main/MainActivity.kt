@@ -14,7 +14,6 @@ import com.dicoding.android.intermediate.submission.storyapp.views.factories.Use
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListActivity.Companion.EXTRA_TOKEN
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
