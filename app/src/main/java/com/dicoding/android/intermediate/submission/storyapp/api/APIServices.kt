@@ -29,6 +29,12 @@ interface APIServices {
         @Query("size") size: Int?
     ): StoryListResponse
 
+    @GET("stories")
+    suspend fun getStoryWithLocationList(
+        @Header("Authorization") token: String,
+        @Query("location") page: Int,
+    ): StoryListResponse
+
     @Multipart
     @POST("stories")
     suspend fun uploadImage(

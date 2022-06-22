@@ -24,11 +24,24 @@ class StoryRepository constructor(
         try {
             val bearer = addBearerPrefix(token)
             val response = services.getStoryList(bearer, page, size)
-            Log.d(Log.WARN.toString(), "TESSSS")
             emit(Result.success(response))
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.d(Log.WARN.toString(), "TESSSS")
+            val failure = Result.failure<StoryListResponse>(e)
+            emit(failure)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getStoryWithLocationList(
+        token: String,
+        location: Int = 1,
+    ): Flow<Result<StoryListResponse>> = flow {
+        try {
+            val bearer = addBearerPrefix(token)
+            val response = services.getStoryWithLocationList(bearer, location)
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
             val failure = Result.failure<StoryListResponse>(e)
             emit(failure)
         }
