@@ -29,6 +29,8 @@ import com.dicoding.android.intermediate.submission.storyapp.utils.reduceFileIma
 import com.dicoding.android.intermediate.submission.storyapp.utils.uriToFile
 import com.dicoding.android.intermediate.submission.storyapp.views.factories.StoryViewModelFactory
 import com.dicoding.android.intermediate.submission.storyapp.views.login.LoginActivity
+import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListActivity
+import com.dicoding.android.intermediate.submission.storyapp.views.storylist.StoryListActivity.Companion.EXTRA_TOKEN
 import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity
 import com.dicoding.android.intermediate.submission.storyapp.views.storymap.StoryMapActivity.Companion.EXTRA_TOKEN_MAP
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -228,38 +230,69 @@ class StoryUploadActivity : AppCompatActivity() {
                 file.name,
                 requestImageFile
             )
-            val lat = latLon?.latitude.toString().toRequestBody()
-            val lon = latLon?.longitude.toString().toRequestBody()
 
-            lifecycleScope.launchWhenStarted {
-                launch {
-                    storyUploadViewModel.postStoryItem(
-                        token,
-                        image,
-                        description,
-                        lat,
-                        lon,
-                    ).collect { response ->
-                        response.onSuccess {
-                            Toast.makeText(
-                                this@StoryUploadActivity,
-                                getString(R.string.toast_story_upload_success),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            finish()
+            if (binding.swIsUsingLocation.isChecked) {
+                val lat = latLon?.latitude.toString().toRequestBody()
+                val lon = latLon?.longitude.toString().toRequestBody()
+
+                lifecycleScope.launchWhenStarted {
+                    launch {
+                        storyUploadViewModel.postStoryItem(
+                            token,
+                            image,
+                            description,
+                            lat,
+                            lon,
+                        ).collect { response ->
+                            response.onSuccess {
+                                Toast.makeText(
+                                    this@StoryUploadActivity,
+                                    getString(R.string.toast_story_upload_success),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                finish()
+                            }
+
+                            response.onFailure {
+                                Toast.makeText(
+                                    this@StoryUploadActivity,
+                                    getString(R.string.toast_story_upload_failed),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
+                    }
+                }
+            } else {
+                lifecycleScope.launchWhenStarted {
+                    launch {
+                        storyUploadViewModel.postStoryItem(
+                            token,
+                            image,
+                            description,
+                        ).collect { response ->
+                            response.onSuccess {
+                                Toast.makeText(
+                                    this@StoryUploadActivity,
+                                    getString(R.string.toast_story_upload_success),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                finish()
+                            }
 
-                        response.onFailure {
-                            Toast.makeText(
-                                this@StoryUploadActivity,
-                                getString(R.string.toast_story_upload_success),
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            response.onFailure {
+                                Toast.makeText(
+                                    this@StoryUploadActivity,
+                                    getString(R.string.toast_story_upload_failed),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
                 }
             }
         }
+
 
         setLoading(false)
     }
