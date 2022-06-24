@@ -105,14 +105,12 @@ class StoryListActivity : AppCompatActivity() {
             }
         )
 
-        val recyclerViewState = recyclerView.layoutManager?.onSaveInstanceState()
-
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                storyListViewModel.getStoryList(token).observeForever {
+                storyListViewModel.getStoryList(token).observe(this@StoryListActivity) {
                     storyListAdapter.submitData(lifecycle, it)
+                    recyclerView.smoothScrollToPosition(0)
                 }
-                recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
             }
         }
     }
